@@ -1,0 +1,16 @@
+.card {
+  background: var(--card); border-radius: var(--r-lg);
+  padding: 18px 20px; box-shadow: var(--sh); border: 1px solid var(--border);
+}
+.header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+.title { font-size: 13px; font-weight: 700; color: var(--text); }
+.sub   { font-size: 10px; color: var(--text-3); }
+.body  { display: flex; align-items: center; gap: 16px; }
+.donut { flex-shrink: 0; }
+.legend { display: flex; flex-direction: column; gap: 12px; }
+.legItem { display: flex; align-items: flex-start; gap: 8px; }
+.dotK { width: 8px; height: 8px; border-radius: 50%; background: var(--sam-blue); flex-shrink: 0; margin-top: 4px; }
+.dotT { width: 8px; height: 8px; border-radius: 50%; background: var(--tiger); flex-shrink: 0; margin-top: 4px; }
+.legLabel { font-size: 10px; color: var(--text-3); font-weight: 600; }
+.legVal   { font-size: 13px; font-weight: 700; color: var(--text); }
+.legPct   { font-size: 11px; color: var(--text-3); font-weight: 500; }

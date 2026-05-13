@@ -1,11 +1,60 @@
-.page { min-height: 100vh; background: var(--bg); }
-.main { max-width: 1320px; margin: 0 auto; padding: 28px 28px 64px; }
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  min-width: 0;
+  background: var(--bg);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 28px 64px;
+}
+
+/* 대시보드 */
 .dashboard { display: flex; flex-direction: column; gap: 20px; }
-.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.middle { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-.alertsTab { max-width: 760px; }
-@media (max-width: 900px) {
-  .main { padding: 20px 16px 48px; }
-  .cards { grid-template-columns: 1fr; }
-  .middle { grid-template-columns: 1fr; }
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.chartRow {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 16px;
+  align-items: start;
+}
+.chartMain { }
+.chartSide { display: flex; flex-direction: column; gap: 14px; }
+
+/* 거래량 요약 카드 */
+.volSummary {
+  background: var(--card); border-radius: var(--r-lg);
+  padding: 16px 18px; box-shadow: var(--sh); border: 1px solid var(--border);
+}
+.vsLabel { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
+.vsRow { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.vsK { font-size: 16px; font-weight: 800; color: var(--sam-blue); }
+.vsT { font-size: 16px; font-weight: 800; color: var(--tiger); }
+.vsSep { font-size: 11px; color: var(--text-3); flex: 1; text-align: center; }
+.vsBar {
+  height: 8px; background: var(--tiger); border-radius: 4px; overflow: hidden;
+}
+.vsBarK { height: 100%; background: var(--sam-blue); border-radius: 4px; }
+
+@media (max-width: 1100px) {
+  .kpiGrid { grid-template-columns: repeat(2, 1fr); }
+  .chartRow { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .content { margin-left: 0; }
+  .inner   { padding: 20px 16px 48px; }
+  .kpiGrid { grid-template-columns: 1fr; }
 }
