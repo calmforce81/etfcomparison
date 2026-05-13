@@ -1,12 +1,16 @@
-import './globals.css';
 import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ETF 실시간 비교 대시보드',
-  description: 'KODEX vs TIGER ETF comparison dashboard',
+  title: 'ETF 비교 대시보드 | Samsung Asset Management',
+  description: 'KODEX vs TIGER ETF 실시간 비교 플랫폼',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ko">
       <body>{children}</body>

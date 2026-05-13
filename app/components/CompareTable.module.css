@@ -1,0 +1,67 @@
+.wrap {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.thLabel, .thVal, .thWinner {
+  padding: 12px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+
+.thVal { text-align: right; }
+.thWinner { text-align: center; }
+
+.kCol { color: var(--blue-mid); }
+.tCol { color: var(--red-mid); }
+
+.row:hover td { background: var(--surface2); }
+.row:not(:last-child) td { border-bottom: 1px solid var(--border); }
+
+.rowLabel {
+  padding: 13px 16px;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.rowVal {
+  padding: 13px 16px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.winK { color: var(--blue-mid); font-weight: 700; }
+.winT { color: var(--red-mid); font-weight: 700; }
+
+.rowWinner {
+  padding: 13px 16px;
+  text-align: center;
+}
+
+.chipK, .chipT {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.chipK { background: var(--blue-light); color: var(--blue-mid); }
+.chipT { background: var(--red-light); color: var(--red-mid); }
+
+.dash { color: var(--text-3); font-size: 14px; }
