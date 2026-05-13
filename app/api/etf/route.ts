@@ -73,6 +73,8 @@ async function buildThemeData(): Promise<ThemeData[]> {
         vol: fmtQuant(item.quant),
         expense: meta.expense,
         discount: calcDiscount(item.nowVal, item.nav),
+        volRaw: item.quant,
+        volHistory: mock.volHistory,
         week1: sliceHistory(prices, '1W'),
         month1: sliceHistory(prices, '1M'),
         month3: sliceHistory(prices, '3M'),

@@ -1,155 +1,117 @@
 .header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .inner {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 16px 24px 12px;
+  padding: 14px 28px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 
-.brand {
+.brand { display: flex; align-items: center; gap: 16px; }
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  background: var(--samsung-blue);
+  border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logoMark span {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
-.logos {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.logos { display: flex; align-items: center; gap: 7px; }
 
 .badgeK {
-  background: var(--blue-mid);
+  background: var(--samsung-blue);
   color: #fff;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 10px;
-  border-radius: 5px;
-  letter-spacing: 0.04em;
+  border-radius: 6px;
+  letter-spacing: 0.06em;
 }
-
 .badgeT {
-  background: var(--red-mid);
+  background: var(--tiger);
   color: #fff;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 10px;
-  border-radius: 5px;
-  letter-spacing: 0.04em;
+  border-radius: 6px;
+  letter-spacing: 0.06em;
 }
-
 .vs {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-3);
-  font-weight: 500;
+  font-weight: 600;
 }
 
-.titleBlock { display: flex; flex-direction: column; gap: 2px; }
-.title { font-size: 16px; font-weight: 600; color: var(--text); }
-.sub { font-size: 12px; color: var(--text-3); }
+.titleBlock { display: flex; flex-direction: column; gap: 1px; }
+.title { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.sub { font-size: 11px; color: var(--text-3); }
 
-.right {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
+.right { display: flex; align-items: center; gap: 10px; }
 
 .sourceLive {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: var(--green-light);
-  color: var(--green);
-  letter-spacing: 0.02em;
+  font-size: 11px; font-weight: 600; padding: 3px 9px;
+  border-radius: 20px;
+  background: var(--green-light); color: var(--green);
+  border: 1px solid rgba(11,122,74,0.15);
 }
-
 .sourceMock {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: var(--amber-light);
-  color: var(--amber);
-  letter-spacing: 0.02em;
+  font-size: 11px; font-weight: 600; padding: 3px 9px;
+  border-radius: 20px;
+  background: var(--amber-light); color: var(--amber);
+  border: 1px solid rgba(149,102,0,0.15);
 }
 
 .liveDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+  width: 7px; height: 7px; border-radius: 50%;
   background: #27ae60;
   animation: pulse 1.8s ease-in-out infinite;
 }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
-
-.liveTime {
-  font-size: 12px;
-  color: var(--text-3);
-  font-variant-numeric: tabular-nums;
-}
+.liveTime { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
 
 .nav {
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
   display: flex;
-  gap: 4px;
+  gap: 2px;
   border-top: 1px solid var(--border);
 }
-
 .navBtn, .navActive {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 10px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-2);
-  position: relative;
-  transition: color 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  background: transparent; border: none; border-radius: 0;
+  padding: 10px 16px; font-size: 13px; font-weight: 500;
+  color: var(--text-3); position: relative;
+  transition: color 0.15s; display: flex; align-items: center; gap: 7px;
 }
-
 .navBtn:hover { background: transparent; color: var(--text); }
-
-.navActive {
-  color: var(--text);
-}
-
+.navActive { color: var(--samsung-blue); font-weight: 600; }
 .navActive::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px 2px 0 0;
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--samsung-blue); border-radius: 2px 2px 0 0;
 }
-
 .badge {
-  background: var(--red-mid);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 1px 6px;
-  border-radius: 10px;
-  line-height: 1.6;
+  background: var(--tiger); color: #fff;
+  font-size: 10px; font-weight: 700; padding: 1px 6px;
+  border-radius: 10px; line-height: 1.6;
 }

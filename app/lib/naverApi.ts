@@ -110,3 +110,9 @@ export function sliceHistory(
   if (period === '1M') return prices.slice(Math.max(n - 22, 0));
   return prices.slice(Math.max(n - 65, 0));
 }
+
+/** 거래량 히스토리에서 최근 10거래일 슬라이스 (단위: 만주) */
+export function sliceVolHistory(volumes: number[]): number[] {
+  const recent = volumes.slice(-10);
+  return recent.map(v => Math.round(v / 10000));
+}
