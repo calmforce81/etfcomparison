@@ -1,35 +1,48 @@
 .wrap {
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  background: var(--card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh);
   border: 1px solid var(--border);
   overflow: hidden;
 }
-.table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+/* 모바일: 가로 스크롤 컨테이너 */
+.scrollOuter {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 480px; }
 
 .thLabel, .thVal, .thWinner {
-  padding: 11px 16px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 11px 14px;
+  font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
   color: var(--text-3); border-bottom: 1px solid var(--border);
-  background: var(--surface2);
+  background: var(--card-2); white-space: nowrap;
 }
-.thVal { text-align: right; }
+.thVal    { text-align: right; }
 .thWinner { text-align: center; }
-.kCol { color: var(--samsung-blue); }
+.kCol { color: var(--sam-blue); }
 .tCol { color: var(--tiger); }
 
-.row:hover td { background: var(--surface2); }
+.row:hover td { background: var(--card-2); }
 .row:not(:last-child) td { border-bottom: 1px solid var(--border); }
 
-.rowLabel { padding: 13px 16px; color: var(--text-2); font-weight: 500; }
+.rowLabel { padding: 12px 14px; color: var(--text-2); font-weight: 500; white-space: nowrap; }
 .rowVal {
-  padding: 13px 16px; text-align: right;
+  padding: 12px 14px; text-align: right;
   font-variant-numeric: tabular-nums; color: var(--text); font-weight: 600;
+  white-space: nowrap;
 }
-.winK { color: var(--samsung-blue); font-weight: 800; }
-.winT { color: var(--tiger); font-weight: 800; }
+.winK { color: var(--sam-blue); font-weight: 800; }
+.winT { color: var(--tiger);    font-weight: 800; }
 
-.rowWinner { padding: 13px 16px; text-align: center; }
-.chipK { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; letter-spacing: 0.03em; background: var(--kodex-light); color: var(--samsung-blue); }
-.chipT { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; letter-spacing: 0.03em; background: var(--tiger-light); color: var(--tiger); }
-.dash { color: var(--text-3); font-size: 14px; }
+.rowWinner { padding: 12px 14px; text-align: center; white-space: nowrap; }
+.chipK { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; background: var(--sam-blue-3); color: var(--sam-blue); }
+.chipT { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; background: var(--tiger-2);   color: var(--tiger); }
+.dash  { color: var(--text-3); font-size: 14px; }
+
+@media (max-width: 768px) {
+  .thLabel, .thVal, .thWinner { padding: 9px 10px; font-size: 10px; }
+  .rowLabel, .rowVal, .rowWinner { padding: 10px 10px; font-size: 12px; }
+}

@@ -41,20 +41,38 @@
 }
 .vsLabel { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
 .vsRow { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
-.vsK { font-size: 16px; font-weight: 800; color: var(--sam-blue); }
-.vsT { font-size: 16px; font-weight: 800; color: var(--tiger); }
-.vsSep { font-size: 11px; color: var(--text-3); flex: 1; text-align: center; }
-.vsBar {
-  height: 8px; background: var(--tiger); border-radius: 4px; overflow: hidden;
-}
+.vsK  { font-size: 16px; font-weight: 800; color: var(--sam-blue); }
+.vsT  { font-size: 16px; font-weight: 800; color: var(--tiger); }
+.vsSep{ font-size: 11px; color: var(--text-3); flex: 1; text-align: center; }
+.vsBar { height: 8px; background: var(--tiger); border-radius: 4px; overflow: hidden; }
 .vsBarK { height: 100%; background: var(--sam-blue); border-radius: 4px; }
 
+/* ── 태블릿 ── */
 @media (max-width: 1100px) {
-  .kpiGrid { grid-template-columns: repeat(2, 1fr); }
+  .kpiGrid  { grid-template-columns: repeat(2, 1fr); }
   .chartRow { grid-template-columns: 1fr; }
 }
+
+/* ── 모바일 ── */
 @media (max-width: 768px) {
-  .content { margin-left: 0; }
-  .inner   { padding: 20px 16px 48px; }
+  .content {
+    margin-left: 0;
+    padding-bottom: 60px; /* 하단 탭바 높이만큼 여백 */
+  }
+  .inner {
+    padding: 16px 14px 20px;
+  }
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .chartRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .dashboard { gap: 14px; }
+}
+
+@media (max-width: 420px) {
   .kpiGrid { grid-template-columns: 1fr; }
 }

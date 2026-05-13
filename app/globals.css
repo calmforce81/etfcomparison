@@ -62,3 +62,22 @@ input, textarea {
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+
+/* ── 모바일 터치 최적화 ── */
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+
+  /* 탭 등 터치 타겟 최소 44px */
+  button { min-height: 36px; }
+
+  /* 텍스트 선택 방지 (탭바 등) */
+  .noSelect { -webkit-user-select: none; user-select: none; }
+
+  /* 카드 호버 효과 제거 (모바일에선 sticky hover 문제) */
+  .card:hover { box-shadow: var(--sh); }
+}
+
+/* 가로 모드 대응 */
+@media (max-width: 768px) and (orientation: landscape) {
+  :root { font-size: 13px; }
+}

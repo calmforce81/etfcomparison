@@ -69,7 +69,7 @@ export default function OverviewPanel({ themes }: Props) {
             <span className={styles.legT}><span className={`${styles.dot} ${styles.dotT}`}/>TIGER</span>
           </div>
         </div>
-        <table className={styles.table}>
+        <div className={styles.scrollOuter}><table className={styles.table}>
           <thead>
             <tr>
               <th className={styles.th}>테마</th>
@@ -137,7 +137,7 @@ export default function OverviewPanel({ themes }: Props) {
               );
             })}
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       {/* 테마별 AUM 바 비교 */}

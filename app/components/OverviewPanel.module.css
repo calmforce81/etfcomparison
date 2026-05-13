@@ -2,98 +2,94 @@
 
 .summaryRow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .sumCard {
-  background: var(--surface); border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
-  padding: 18px 20px;
+  background: var(--card); border-radius: var(--r-lg);
+  box-shadow: var(--sh); border: 1px solid var(--border);
+  padding: 16px 18px;
 }
-.sumK { border-left: 4px solid var(--samsung-blue); }
+.sumK { border-left: 4px solid var(--sam-blue); }
 .sumT { border-left: 4px solid var(--tiger); }
-.sumLabel { font-size: 11px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
-.sumVal { font-size: 24px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
-.sumSub { font-size: 11px; color: var(--text-3); margin-top: 4px; }
-.kodexColor { color: var(--samsung-blue); }
+.sumLabel { font-size: 11px; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.sumVal   { font-size: 22px; font-weight: 800; color: var(--text); letter-spacing: -.02em; }
+.sumSub   { font-size: 11px; color: var(--text-3); margin-top: 4px; }
+.kodexColor { color: var(--sam-blue); }
 .tigerColor { color: var(--tiger); }
 
+/* 테이블 래퍼 */
 .tableWrap {
-  background: var(--surface); border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  background: var(--card); border-radius: var(--r-lg);
+  box-shadow: var(--sh); border: 1px solid var(--border);
   overflow: hidden;
 }
 .tableHeader {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px 12px; border-bottom: 1px solid var(--border);
-  background: var(--surface2);
+  padding: 14px 18px 12px; border-bottom: 1px solid var(--border);
+  background: var(--card-2); flex-wrap: wrap; gap: 8px;
 }
 .tableTitle { font-size: 13px; font-weight: 700; color: var(--text); }
-.legend { display: flex; gap: 16px; }
+.legend     { display: flex; gap: 14px; }
 .legK, .legT { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-2); }
-.dot { width: 10px; height: 3px; border-radius: 2px; background: var(--samsung-blue); }
+.dot  { width: 10px; height: 3px; border-radius: 2px; background: var(--sam-blue); }
 .dotT { background: var(--tiger); }
 
-.table { width: 100%; border-collapse: collapse; font-size: 12px; }
+/* 가로 스크롤 컨테이너 */
+.scrollOuter {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 600px; }
 .th {
-  padding: 10px 14px; font-size: 11px; font-weight: 700; color: var(--text-3);
-  text-align: center; border-bottom: 1px solid var(--border); background: var(--surface2);
-  letter-spacing: 0.03em;
+  padding: 9px 12px; font-size: 10px; font-weight: 700; color: var(--text-3);
+  text-align: center; border-bottom: 1px solid var(--border); background: var(--card-2);
+  letter-spacing: .03em; white-space: nowrap;
 }
 .th:first-child { text-align: left; }
 
 .trow:not(:last-child) td { border-bottom: 1px solid var(--border); }
-.trow:hover td { background: var(--surface2); }
+.trow:hover td { background: var(--card-2); }
 
 .tdTheme {
-  padding: 12px 14px; font-weight: 700; color: var(--text);
+  padding: 11px 12px; font-weight: 700; color: var(--text);
   font-size: 13px; white-space: nowrap;
 }
 .tdDouble {
-  padding: 10px 14px; text-align: center;
+  padding: 9px 12px; text-align: center;
   display: table-cell; vertical-align: middle;
 }
-.kVal {
-  display: block; font-size: 12px; font-weight: 700;
-  color: var(--text); font-variant-numeric: tabular-nums;
-}
-.tVal {
-  display: block; font-size: 11px; font-weight: 500;
-  color: var(--text-2); font-variant-numeric: tabular-nums; margin-top: 2px;
-}
+.kVal { display: block; font-size: 12px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tVal { display: block; font-size: 11px; font-weight: 500; color: var(--text-2); font-variant-numeric: tabular-nums; margin-top: 2px; white-space: nowrap; }
 .up { color: var(--up) !important; }
 .dn { color: var(--dn) !important; }
-.winK { color: var(--samsung-blue) !important; font-weight: 800 !important; }
-.winT { color: var(--tiger) !important; font-weight: 800 !important; }
+.winK { color: var(--sam-blue) !important; font-weight: 800 !important; }
+.winT { color: var(--tiger)    !important; font-weight: 800 !important; }
 
-.tdWinner { padding: 10px 14px; text-align: center; }
-.chipK { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; background: var(--kodex-light); color: var(--samsung-blue); }
-.chipT { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; background: var(--tiger-light); color: var(--tiger); }
+.tdWinner { padding: 9px 12px; text-align: center; white-space: nowrap; }
+.chipK { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; background: var(--sam-blue-3); color: var(--sam-blue); }
+.chipT { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 5px; background: var(--tiger-2);   color: var(--tiger); }
 
-/* AUM 비교 바 */
+/* AUM 바 */
 .aumSection {
-  background: var(--surface); border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
-  padding: 20px;
+  background: var(--card); border-radius: var(--r-lg);
+  box-shadow: var(--sh); border: 1px solid var(--border);
+  padding: 18px;
 }
-.aumRow { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.aumRow   { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .aumRow:last-child { margin-bottom: 0; }
-.aumLabel { font-size: 12px; font-weight: 600; color: var(--text-2); width: 72px; flex-shrink: 0; }
-.aumBar { flex: 1; height: 28px; display: flex; border-radius: 6px; overflow: hidden; background: var(--surface2); }
-.aumBarK {
-  background: var(--samsung-blue); height: 100%;
-  display: flex; align-items: center; padding: 0 8px;
-  transition: width 0.3s ease;
-}
-.aumBarT {
-  background: var(--tiger); height: 100%;
-  display: flex; align-items: center; padding: 0 8px;
-  transition: width 0.3s ease;
-}
+.aumLabel { font-size: 12px; font-weight: 600; color: var(--text-2); width: 64px; flex-shrink: 0; }
+.aumBar   { flex: 1; height: 26px; display: flex; border-radius: 6px; overflow: hidden; background: var(--card-2); }
+.aumBarK  { background: var(--sam-blue); height: 100%; display: flex; align-items: center; padding: 0 8px; transition: width .3s; }
+.aumBarT  { background: var(--tiger);    height: 100%; display: flex; align-items: center; padding: 0 8px; transition: width .3s; }
 .aumBarLabel { font-size: 10px; font-weight: 700; color: #fff; white-space: nowrap; }
-.aumPcts { display: flex; flex-direction: column; gap: 2px; width: 56px; }
-.kPct { font-size: 11px; font-weight: 700; color: var(--samsung-blue); }
-.tPct { font-size: 11px; font-weight: 600; color: var(--tiger); }
+.aumPcts  { display: flex; flex-direction: column; gap: 1px; width: 48px; }
+.kPct     { font-size: 11px; font-weight: 700; color: var(--sam-blue); }
+.tPct     { font-size: 11px; font-weight: 600; color: var(--tiger); }
 
-@media (max-width: 900px) {
-  .summaryRow { grid-template-columns: 1fr 1fr; }
-}
+@media (max-width: 900px) { .summaryRow { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) {
+  .summaryRow { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sumVal { font-size: 18px; }
+  .aumLabel { width: 52px; font-size: 11px; }
+}
+@media (max-width: 400px) {
   .summaryRow { grid-template-columns: 1fr; }
 }
