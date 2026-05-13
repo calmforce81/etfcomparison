@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// 환경변수(process.env)를 런타임에 읽으려면 dynamic 렌더링 필수
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   const { metric, kVal, tVal, theme } = await request.json();
 
@@ -17,7 +20,7 @@ TIGER 값: ${tVal}
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     return NextResponse.json({
-      insight: '⚠️ ANTHROPIC_API_KEY 환경변수를 .env.local에 설정하면 AI 인사이트를 바로 사용할 수 있습니다.\n예: ANTHROPIC_API_KEY=sk-ant-...'
+      insight: '⚠️ Vercel 환경변수 미설정\n\nSettings → Environment Variables → ANTHROPIC_API_KEY 를 추가한 뒤 Redeploy 해주세요.',
     });
   }
 
