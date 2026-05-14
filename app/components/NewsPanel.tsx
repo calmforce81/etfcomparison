@@ -21,32 +21,25 @@ const TYPE_TABS = [
   { key: 'youtube', label: '▶ 유튜브' },
 ] as const;
 
-function relativeTime(iso: string) {
+function relTime(iso: string) {
   try {
     const diff = Date.now() - new Date(iso).getTime();
     const m = Math.floor(diff / 60000);
+    if (m < 1)  return '방금';
     if (m < 60) return `${m}분 전`;
     const h = Math.floor(m / 60);
     if (h < 24) return `${h}시간 전`;
-    return `${Math.floor(h / 24)}일 전`;
-  } catch { return iso; }
-}
-
-function typeIcon(type: string) {
-  if (type === 'youtube') return '▶';
-  if (type === 'blog')    return '✏️';
-  return '📰';
-}
-function typeBg(type: string) {
-  if (type === 'youtube') return styles.ytTag;
-  if (type === 'blog')    return styles.blogTag;
-  return styles.newsTag;
+    const d = Math.floor(h / 24);
+    return d < 8 ? `${d}일 전` : new Date(iso).toLocaleDateString('ko-KR',{month:'short',day:'numeric'});
+  } catch { return ''; }
 }
 
 export default function NewsPanel() {
   const [theme, setTheme]         = useState('전체');
   const [typeFilter, setTypeFilter] = useState<'all'|'news'|'blog'|'youtube'>('all');
-  const [allItems, setAllItems]   = useState<NewsItem[]>([]);
+  const [news,   setNews]         = useState<NewsItem[]>([]);
+  const [blogs,  setBlogs]        = useState<NewsItem[]>([]);
+  const [videos, setVideos]       = useState<NewsItem[]>([]);
   const [loading, setLoading]     = useState(false);
   const [fetchedAt, setFetchedAt] = useState('');
   const [sources, setSources]     = useState<Record<string,string>>({});
@@ -56,37 +49,33 @@ export default function NewsPanel() {
     try {
       const res  = await fetch(`/api/news?theme=${encodeURIComponent(t)}`);
       const data = await res.json();
-      const combined: NewsItem[] = [
-        ...(data.news   ?? []),
-        ...(data.blogs  ?? []),
-        ...(data.videos ?? []),
-      ].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-      setAllItems(combined);
+      setNews(data.news   ?? []);
+      setBlogs(data.blogs ?? []);
+      setVideos(data.videos ?? []);
       setFetchedAt(data.fetchedAt ?? '');
       setSources(data.sources ?? {});
-    } finally {
-      setLoading(false);
-    }
+    } catch { /* silent */ }
+    finally { setLoading(false); }
   }, []);
 
   useEffect(() => { load(theme); }, [theme, load]);
 
-  const filtered = typeFilter === 'all'
-    ? allItems
-    : allItems.filter(i => i.type === typeFilter);
+  // 필터 적용
+  const filtered =
+    typeFilter === 'all'     ? [...news, ...blogs, ...videos].sort((a,b) => new Date(b.publishedAt).getTime()-new Date(a.publishedAt).getTime()) :
+    typeFilter === 'news'    ? news :
+    typeFilter === 'blog'    ? blogs :
+    videos;
 
-  const counts = {
-    news:    allItems.filter(i => i.type === 'news').length,
-    blog:    allItems.filter(i => i.type === 'blog').length,
-    youtube: allItems.filter(i => i.type === 'youtube').length,
-  };
+  // 활성 소스만 (미설정 항목 제외)
+  const activeSources = Object.entries(sources).filter(([,v]) => !v.includes('미설정') && !v.includes('키 미설정'));
 
   return (
     <div className={styles.wrap}>
       {/* 헤더 */}
       <div className={styles.header}>
         <div className={styles.headerLeft}>
-          <h2 className={styles.title}>ETF 뉴스 & 콘텐츠</h2>
+          <h2 className={styles.title}>ETF 뉴스 &amp; 콘텐츠</h2>
           {fetchedAt && (
             <span className={styles.fetchTime}>
               🕐 {new Date(fetchedAt).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})} 조회
@@ -96,13 +85,11 @@ export default function NewsPanel() {
         <button className={styles.refreshBtn} onClick={() => load(theme)}>↻ 새로고침</button>
       </div>
 
-      {/* 소스 뱃지 */}
-      {Object.keys(sources).length > 0 && (
+      {/* 활성 소스 배지만 표시 */}
+      {activeSources.length > 0 && (
         <div className={styles.sourceBadges}>
-          {Object.entries(sources).map(([k, v]) => (
-            <span key={k} className={`${styles.srcBadge} ${v === 'Mock' ? styles.srcMock : styles.srcLive}`}>
-              {v === 'Mock' ? '⚠' : '●'} {k}: {v}
-            </span>
+          {activeSources.map(([k, v]) => (
+            <span key={k} className={styles.srcLive}>● {v}</span>
           ))}
         </div>
       )}
@@ -120,49 +107,52 @@ export default function NewsPanel() {
 
       {/* 타입 필터 */}
       <div className={styles.typeBar}>
-        {TYPE_TABS.map(tab => (
-          <button key={tab.key}
-            className={typeFilter === tab.key ? styles.typeActive : styles.typeBtn}
-            onClick={() => setTypeFilter(tab.key)}>
-            {tab.label}
-            {tab.key !== 'all' && (
-              <span className={styles.cnt}>{counts[tab.key as keyof typeof counts]}</span>
-            )}
-          </button>
-        ))}
+        {TYPE_TABS.map(tab => {
+          const cnt = tab.key==='news' ? news.length : tab.key==='blog' ? blogs.length : tab.key==='youtube' ? videos.length : 0;
+          // 데이터 없는 탭은 흐리게만 (숨기지 않음)
+          return (
+            <button key={tab.key}
+              className={`${typeFilter===tab.key ? styles.typeActive : styles.typeBtn} ${tab.key!=='all'&&cnt===0 ? styles.typeEmpty : ''}`}
+              onClick={() => setTypeFilter(tab.key)}>
+              {tab.label}
+              {tab.key !== 'all' && cnt > 0 && <span className={styles.cnt}>{cnt}</span>}
+            </button>
+          );
+        })}
       </div>
 
-      {/* 콘텐츠 목록 */}
+      {/* 카드 */}
       {loading ? (
-        <div className={styles.loading}>
-          <div className={styles.spinner} />
-          <span>콘텐츠 불러오는 중...</span>
-        </div>
+        <div className={styles.loading}><div className={styles.spinner}/><span>최신 콘텐츠 불러오는 중...</span></div>
       ) : filtered.length === 0 ? (
-        <div className={styles.empty}>검색 결과가 없습니다</div>
+        <div className={styles.empty}>
+          {typeFilter==='blog' ? '네이버 블로그 API 키(NAVER_CLIENT_ID)를 Vercel에 추가하면 활성화됩니다.' :
+           typeFilter==='youtube' ? 'YouTube API 키(YOUTUBE_API_KEY)를 Vercel에 추가하면 활성화됩니다.' :
+           '검색 결과가 없습니다. 잠시 후 새로고침해 보세요.'}
+        </div>
       ) : (
         <div className={styles.grid}>
           {filtered.map(item => (
             <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer"
-              className={`${styles.card} ${item.type === 'youtube' ? styles.ytCard : ''}`}>
-              {/* 유튜브 썸네일 */}
-              {item.type === 'youtube' && item.thumbnail && (
+              className={`${styles.card} ${item.type==='youtube' ? styles.ytCard : ''}`}>
+              {item.type==='youtube' && item.thumbnail && (
                 <div className={styles.thumb}>
-                  <img src={item.thumbnail} alt="" className={styles.thumbImg} />
+                  <img src={item.thumbnail} alt="" className={styles.thumbImg}/>
                   <div className={styles.playBtn}>▶</div>
                 </div>
               )}
               <div className={styles.cardBody}>
                 <div className={styles.cardTop}>
-                  <span className={`${styles.typeTag} ${typeBg(item.type)}`}>
-                    {typeIcon(item.type)} {item.type === 'youtube' ? 'YouTube' : item.type === 'blog' ? 'Blog' : 'News'}
+                  <span className={`${styles.typeTag} ${
+                    item.type==='youtube' ? styles.ytTag :
+                    item.type==='blog'    ? styles.blogTag : styles.newsTag
+                  }`}>
+                    {item.type==='youtube' ? '▶ YouTube' : item.type==='blog' ? '✏️ Blog' : '📰 News'}
                   </span>
-                  <span className={styles.cardTime}>{relativeTime(item.publishedAt)}</span>
+                  <span className={styles.cardTime}>{relTime(item.publishedAt)}</span>
                 </div>
                 <div className={styles.cardTitle}>{item.title}</div>
-                {item.summary && (
-                  <div className={styles.cardSummary}>{item.summary.slice(0,80)}...</div>
-                )}
+                {item.summary && <div className={styles.cardSummary}>{item.summary}</div>}
                 <div className={styles.cardSource}>{item.source}</div>
               </div>
             </a>

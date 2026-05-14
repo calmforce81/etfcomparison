@@ -87,6 +87,7 @@ export default function Home() {
             themes={themes.map(t => t.name)}
             activeTheme={activeTheme}
             pageTitle={PAGE_TITLES[activeTab] ?? ''}
+            showThemeTabs={activeTab === 'dashboard'}
             onThemeChange={activeTab === 'dashboard' ? setActiveTheme : () => {}}
           />
 
