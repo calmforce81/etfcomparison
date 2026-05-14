@@ -1,0 +1,88 @@
+.wrap {
+  background: var(--card);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px; gap: 12px; flex-wrap: wrap;
+  background: var(--card-2); border-bottom: 1px solid var(--border);
+}
+.timeRow  { display: flex; align-items: center; gap: 8px; }
+.clock    { font-size: 14px; }
+.timeLabel{ font-size: 11px; font-weight: 600; color: var(--text-3); }
+.timeVal  { font-size: 13px; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.timeSep  { color: var(--text-3); font-size: 12px; }
+.sourceTag{
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  background: var(--green-bg); color: var(--green);
+}
+.sourceTag[data-mock] { background: var(--amber-bg); color: var(--amber); }
+
+.toggleBtn {
+  font-size: 12px; font-weight: 600; color: var(--sam-blue);
+  padding: 5px 12px; border-radius: 8px;
+  border: 1px solid var(--sam-blue-4);
+  background: var(--sam-blue-3);
+  white-space: nowrap;
+}
+.toggleBtn:hover { background: var(--sam-blue); color: #fff; }
+
+/* 펼쳐진 패널 */
+.panel { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+
+/* 종목 헤더 */
+.tickerRow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tickerCard {
+  border-radius: var(--r); padding: 14px 16px;
+  border: 1px solid var(--border); border-top: 3px solid transparent;
+}
+.kCard { border-top-color: var(--sam-blue); background: var(--sam-blue-3); }
+.tCard { border-top-color: var(--tiger);    background: var(--tiger-2); }
+
+.tickerBrand { font-size: 10px; font-weight: 800; color: var(--text-3); letter-spacing: .06em; margin-bottom: 4px; }
+.tickerName  { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+.tickerMeta  { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  font-size: 10px; font-weight: 600; padding: 2px 8px;
+  border-radius: 4px; background: var(--card);
+  border: 1px solid var(--border-2); color: var(--text-2);
+  font-family: 'SF Mono', 'Consolas', monospace;
+}
+
+/* 지표 탭 */
+.fieldTabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.fieldTab, .fieldTabActive {
+  font-size: 12px; font-weight: 600; padding: 6px 14px;
+  border-radius: 20px; border: 1px solid var(--border-2);
+  background: transparent; color: var(--text-2); transition: all .15s;
+}
+.fieldTab:hover    { background: var(--sam-blue-3); color: var(--sam-blue); }
+.fieldTabActive    { background: var(--sam-blue); color: #fff; border-color: transparent; }
+
+/* 메타 카드 */
+.metaGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.metaCard {
+  border-radius: var(--r); padding: 14px 16px;
+  background: var(--card-2); border: 1px solid var(--border);
+  border-left: 3px solid transparent;
+}
+.mc_k { border-left-color: var(--sam-blue); }
+.mc_t { border-left-color: var(--tiger); }
+
+.metaBrand { font-size: 10px; font-weight: 800; color: var(--text-3); letter-spacing: .06em; margin-bottom: 10px; }
+.metaRow   { display: flex; gap: 8px; margin-bottom: 7px; align-items: flex-start; }
+.metaRow:last-child { margin-bottom: 0; }
+.metaKey   { font-size: 11px; font-weight: 600; color: var(--text-3); width: 70px; flex-shrink: 0; padding-top: 1px; }
+.metaValue { font-size: 12px; color: var(--text); font-weight: 500; line-height: 1.4; }
+.metaLink  { font-size: 12px; color: var(--sam-blue); font-weight: 600; }
+.metaLink:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .tickerRow { grid-template-columns: 1fr; }
+  .metaGrid  { grid-template-columns: 1fr; }
+  .bar       { padding: 10px 14px; }
+}

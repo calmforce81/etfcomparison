@@ -74,6 +74,9 @@ async function buildThemeData(): Promise<ThemeData[]> {
         expense: meta.expense,
         discount: calcDiscount(item.nowVal, item.nav),
         volRaw: item.quant,
+        isin: mock.isin,
+        exchange: mock.exchange,
+        meta: mock.meta,
         volHistory: mock.volHistory,
         week1: sliceHistory(prices, '1W'),
         month1: sliceHistory(prices, '1M'),
@@ -83,6 +86,7 @@ async function buildThemeData(): Promise<ThemeData[]> {
 
     return {
       name: theme.name,
+      fetchedAt: new Date().toISOString(),
       k: buildEtf(kItem, theme.k, kHist, mockTheme.k),
       t: buildEtf(tItem, theme.t, tHist, mockTheme.t),
     };

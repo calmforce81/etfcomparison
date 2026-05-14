@@ -2,10 +2,11 @@
 import styles from './Sidebar.module.css';
 
 const NAV = [
-  { icon: '▦', key: 'dashboard', label: '테마별 비교' },
-  { icon: '◈', key: 'overview',  label: '전체 비교' },
+  { icon: '▦', key: 'dashboard', label: '테마별 비교'   },
+  { icon: '◈', key: 'overview',  label: '전체 비교'     },
+  { icon: '◎', key: 'insights',  label: 'AI 인사이트'   },
+  { icon: '📰', key: 'news',      label: '뉴스 & 콘텐츠' },
   { icon: '◉', key: 'alerts',    label: '에이전트 알림' },
-  { icon: '◎', key: 'insights',  label: 'AI 인사이트' },
 ];
 
 interface Props {
