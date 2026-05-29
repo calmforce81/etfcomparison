@@ -36,6 +36,21 @@ const THEME_CODES = [
     k: { code: '279530', ticker: 'KODEX 고배당', expense: 0.15 },
     t: { code: '210780', ticker: 'TIGER 고배당', expense: 0.20 },
   },
+  {
+    name: '삼성전자 레버리지',
+    k: { code: '0193W0', ticker: 'KODEX 삼성전자단일종목레버리지', expense: 0.29 },
+    t: { code: '0195R0', ticker: 'TIGER 삼성전자단일종목레버리지', expense: 0.09 },
+  },
+  {
+    name: 'SK하이닉스 레버리지',
+    k: { code: '0193T0', ticker: 'KODEX SK하이닉스단일종목레버리지', expense: 0.29 },
+    t: { code: '0195S0', ticker: 'TIGER SK하이닉스단일종목레버리지', expense: 0.09 },
+  },
+  {
+    name: '미국우주테크',
+    k: { code: '0180V0', ticker: 'ACE 미국우주테크액티브', expense: 0.50 },
+    t: { code: '0183J0', ticker: 'TIGER 미국우주테크', expense: 0.45 },
+  },
 ];
 
 async function buildThemeData(): Promise<ThemeData[]> {

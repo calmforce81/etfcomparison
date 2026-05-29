@@ -20,6 +20,9 @@ const THEME_KW: Record<string, string[]> = {
   '미국나스닥': ['KODEX 나스닥100 ETF', 'TIGER 나스닥100 ETF', '미국 나스닥 ETF'],
   '헬스케어':  ['KODEX 헬스케어 ETF', 'TIGER 헬스케어 ETF', '바이오 ETF'],
   '배당':      ['KODEX 고배당 ETF', 'TIGER 고배당 ETF', '배당 ETF 투자'],
+  '삼성전자 레버리지': ['KODEX 삼성전자 단일종목 레버리지', 'TIGER 삼성전자 단일종목 레버리지', '삼성전자 레버리지 ETF'],
+  'SK하이닉스 레버리지': ['KODEX SK하이닉스 단일종목 레버리지', 'TIGER SK하이닉스 단일종목 레버리지', 'SK하이닉스 레버리지 ETF'],
+  '미국우주테크': ['TIGER 미국우주테크 ETF', 'ACE 미국우주테크액티브', '우주테크 ETF 스페이스X'],
 };
 
 // Google News RSS — 무인증, 한국어 최신순
