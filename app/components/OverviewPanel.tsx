@@ -11,34 +11,49 @@ function calcRet(prices: number[]) {
   return parseFloat(((prices[prices.length - 1] - prices[0]) / prices[0] * 100).toFixed(2));
 }
 
+// KODEX/TIGER 전체 공식 AUM (2026.05.29 기준, 공시 데이터)
+const KODEX_TOTAL_AUM = 201_458_900_000_000;  // 201.4조 (삼성자산운용 공시, 2026.05.29)
+const TIGER_TOTAL_AUM = 421_000_000_000_000;  // 421조 (미래에셋 글로벌 기준, 2026.05 말)
+const KODEX_TOTAL_COUNT = 236;                 // 전체 상품 수
+const KODEX_MARKET_SHARE = 40;                 // 국내 시장 점유율(%)
+
 export default function OverviewPanel({ themes }: Props) {
-  // 전체 AUM 합계
-  const totalKodex = themes.reduce((s, t) => s + t.k.aumRaw, 0);
-  const totalTiger = themes.reduce((s, t) => s + t.t.aumRaw, 0);
+  // 대시보드 내 선택 테마 AUM 합계
+  const dashKodex = themes.reduce((s, t) => s + t.k.aumRaw, 0);
+  const dashTiger = themes.reduce((s, t) => s + t.t.aumRaw, 0);
   const fmtAum = (n: number) => n >= 1e12 ? (n/1e12).toFixed(1)+'조' : Math.round(n/1e8).toLocaleString()+'억';
 
   return (
     <div className={styles.wrap}>
+
+      {/* 공식 AUM 안내 배너 */}
+      <div className={styles.officialBanner}>
+        <div className={styles.bannerIcon}>📢</div>
+        <div className={styles.bannerText}>
+          <span className={styles.bannerTitle}>KODEX 전체 순자산 201.4조 돌파 (2026.05.29 공시)</span>
+          <span className={styles.bannerSub}>
+            236개 상품 전체 합산 · 국내 ETF 시장 점유율 약 40% · 국내 운용업계 최초 달성
+            &nbsp;|&nbsp; 아래 수치는 대시보드에 등록된 <strong>{themes.length}개 테마</strong>의 부분 합산입니다.
+          </span>
+        </div>
+      </div>
+
       {/* 전체 요약 카드 */}
       <div className={styles.summaryRow}>
         <div className={`${styles.sumCard} ${styles.sumK}`}>
-          <div className={styles.sumLabel}>KODEX 전체 AUM</div>
-          <div className={styles.sumVal}>{fmtAum(totalKodex)}</div>
-          <div className={styles.sumSub}>{themes.length}개 테마 합산</div>
+          <div className={styles.sumLabel}>KODEX 공식 전체 AUM</div>
+          <div className={styles.sumVal}>{fmtAum(KODEX_TOTAL_AUM)}</div>
+          <div className={styles.sumSub}>236개 상품 전체 · 2026.05.29 공시</div>
         </div>
-        <div className={`${styles.sumCard} ${styles.sumT}`}>
-          <div className={styles.sumLabel}>TIGER 전체 AUM</div>
-          <div className={styles.sumVal}>{fmtAum(totalTiger)}</div>
-          <div className={styles.sumSub}>{themes.length}개 테마 합산</div>
+        <div className={`${styles.sumCard} ${styles.sumK}`} style={{borderLeftColor:'var(--sam-blue-2)', opacity:0.8}}>
+          <div className={styles.sumLabel}>대시보드 {themes.length}개 테마 AUM</div>
+          <div className={styles.sumVal} style={{fontSize:'20px'}}>{fmtAum(dashKodex)}</div>
+          <div className={styles.sumSub}>전체의 약 {(dashKodex/KODEX_TOTAL_AUM*100).toFixed(1)}% 해당</div>
         </div>
         <div className={styles.sumCard}>
-          <div className={styles.sumLabel}>AUM 우위</div>
-          <div className={`${styles.sumVal} ${totalKodex > totalTiger ? styles.kodexColor : styles.tigerColor}`}>
-            {totalKodex > totalTiger ? 'KODEX' : 'TIGER'}
-          </div>
-          <div className={styles.sumSub}>
-            +{fmtAum(Math.abs(totalKodex - totalTiger))} 차이
-          </div>
+          <div className={styles.sumLabel}>국내 시장 점유율</div>
+          <div className={`${styles.sumVal} ${styles.kodexColor}`}>{KODEX_MARKET_SHARE}%</div>
+          <div className={styles.sumSub}>국내 ETF 시장 1위</div>
         </div>
         <div className={styles.sumCard}>
           <div className={styles.sumLabel}>테마 수익률 우위</div>

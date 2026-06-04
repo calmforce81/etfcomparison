@@ -353,26 +353,25 @@ export const THEMES: ThemeData[] = [
     },
   },
 
-  // ── 미국우주테크 (TIGER 0183J0 vs ACE 0180V0) ──
+  // ── 미국우주항공 (KODEX 0167Z0 vs TIGER 0183J0) ──
   {
     name: '미국우주테크', fetchedAt: new Date().toISOString(),
     k: {
-      // KODEX 우주테크 전용 상품 없음 → ACE 미국우주테크액티브로 대비
-      ticker: 'ACE 미국우주테크액티브', code: '0180V0', isin: 'KR70180V0003', exchange: 'KRX',
-      price: 12850, change: 1.82, nav: 12810,
-      aum: '1,240억', aumRaw: 124000000000,
-      vol: '45만주', volRaw: 450000,
-      expense: 0.50, discount: 0.31,
-      week1:  [12200, 12400, 12600, 12720, 12850],
-      month1: [10800, 11200, 11600, 12000, 12300, 12600, 12850],
-      month3: [9200, 9800, 10400, 10800, 11200, 11600, 12000, 12300, 12600, 12720, 12850],
-      volHistory: [38,42,40,48,52,44,41,46,43,45],
+      ticker: 'KODEX 미국우주항공', code: '0167Z0', isin: 'KR70167Z0002', exchange: 'KRX',
+      price: 11840, change: 2.25, nav: 11800,
+      aum: '1,744억', aumRaw: 174400000000,
+      vol: '58만주', volRaw: 580000,
+      expense: 0.55, discount: 0.34,
+      week1:  [11200, 11400, 11600, 11720, 11840],
+      month1: [10000, 10400, 10800, 11100, 11400, 11600, 11840],
+      month3: [8800, 9400, 10000, 10400, 10800, 11100, 11400, 11600, 11720, 11800, 11840],
+      volHistory: [42,48,45,54,58,50,46,52,55,58],
       meta: {
-        price:   mockMeta({ source:'네이버 금융', calcNote:'당일 체결 기준 현재가', unit:'원' }),
-        nav:     mockMeta({ source:'한국거래소(KRX)', calcNote:'액티브 운용 기반 NAV (Akros U.S. Space Tech 지수 참고)', unit:'원' }),
-        aum:     mockMeta({ source:'한국거래소(KRX)', calcNote:'NAV × 상장좌수 합산', unit:'억원' }),
-        vol:     mockMeta({ source:'네이버 금융', calcNote:'당일 장중 누적 체결량', unit:'주' }),
-        expense: mockMeta({ source:'운용사 공시(한국투자신탁운용)', calcNote:'연 0.50% 액티브 운용 보수', unit:'%/년' }),
+        price:   mockMeta({ source:'네이버 금융', calcNote:'당일 체결 기준 현재가 (상장일 2026.03.17)', unit:'원' }),
+        nav:     mockMeta({ source:'한국거래소(KRX)', calcNote:'iSelect 미국우주항공지수(Price Return) 추종. 미국 우주항공 기업 20종목 구성', unit:'원' }),
+        aum:     mockMeta({ source:'한국거래소(KRX)', calcNote:'NAV × 상장좌수 합산 (2026.03.30 기준 1,744억)', unit:'억원' }),
+        vol:     mockMeta({ source:'네이버 금융', calcNote:'당일 장중 누적 체결량 (Rocket Lab, AST SpaceMobile, Intuitive Machines 등 편입)', unit:'주' }),
+        expense: mockMeta({ source:'운용사 공시(삼성자산운용)', calcNote:'연 0.55% — 신규 상장 기업 특별 편입으로 우주산업 모멘텀 극대화 전략', unit:'%/년' }),
       },
     },
     t: {

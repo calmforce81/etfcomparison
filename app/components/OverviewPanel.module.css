@@ -93,3 +93,29 @@
 @media (max-width: 400px) {
   .summaryRow { grid-template-columns: 1fr; }
 }
+
+/* ── 공식 AUM 안내 배너 ── */
+.officialBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--sam-blue-3);
+  border: 1px solid var(--sam-blue-4);
+  border-left: 4px solid var(--sam-blue);
+  border-radius: var(--r-lg);
+  padding: 14px 18px;
+}
+.bannerIcon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.bannerText { display: flex; flex-direction: column; gap: 4px; }
+.bannerTitle {
+  font-size: 13px; font-weight: 800; color: var(--sam-blue);
+}
+.bannerSub {
+  font-size: 12px; color: var(--text-2); line-height: 1.5;
+}
+.bannerSub strong { color: var(--sam-blue); font-weight: 700; }
+
+@media (max-width: 600px) {
+  .bannerTitle { font-size: 12px; }
+  .bannerSub   { font-size: 11px; }
+}

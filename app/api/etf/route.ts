@@ -48,7 +48,7 @@ const THEME_CODES = [
   },
   {
     name: '미국우주테크',
-    k: { code: '0180V0', ticker: 'ACE 미국우주테크액티브', expense: 0.50 },
+    k: { code: '0167Z0', ticker: 'KODEX 미국우주항공', expense: 0.55 },
     t: { code: '0183J0', ticker: 'TIGER 미국우주테크', expense: 0.45 },
   },
 ];
